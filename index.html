@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ryes Above's Baubles</title>
+	<link rel="icon" href="/img/ryes.png">
+	<style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            margin: 20px;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+	<h2>Ryes Above's Baubles</h2>
+	<script>
+		document.addEventListener('click', (e) => {
+			const rock = document.createElement('div');
+			rock.innerText = '🪨';
+			rock.style.position = 'absolute';
+			rock.style.left = e.clientX + 'px';
+			rock.style.top = e.clientY + 'px';
+			rock.style.pointerEvents = 'none';
+			rock.style.fontSize = '30px';
+
+			document.body.appendChild(rock);
+
+			setTimeout(() => document.body.removeChild(rock), 1000);
+		});
+	</script>
+</body>
+</html>
