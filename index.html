@@ -39,6 +39,12 @@
 					return;
 				}
 			}
+			let x = e.clientX;
+			let y = e.clientY;
+			if("touches" in e) {
+				x = e.touches[0].clientX;
+				y = e.touches[0].clientY;
+			}
 			let duration = (+(new Date()) - startTime) / 1000;
 			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 			const oscillator = audioCtx.createOscillator();
@@ -47,13 +53,13 @@
 			const rock = document.createElement('div');
 			rock.innerText = '🪨';
 			rock.style.position = 'absolute';
-			rock.style.left = e.clientX + 'px';
-			rock.style.top = e.clientY + 'px';
+			rock.style.left = x + 'px';
+			rock.style.top = y + 'px';
 			rock.style.pointerEvents = 'none';
 			rock.style.fontSize = `${30 + (15 * duration)}px`;
 
 			document.body.appendChild(rock);
-			const frequency = (e.clientX / window.innerWidth) * 1000 + 200;
+			const frequency = (e.x / window.innerWidth) * 1000 + 200;
 			oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
 
 			gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
