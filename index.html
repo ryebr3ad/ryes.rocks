@@ -17,9 +17,14 @@
 <body>
 	<h2>Ryes Above's Baubles</h2>
 	<script>
+		let startTime = 0;
 
+		document.addEventListener('mousedown', (e) => {
+			startTime = +(new Date());
+		})
 
-		document.addEventListener('click', (e) => {
+		document.addEventListener('mouseup', (e) => {
+			let duration = (+(new Date()) - startTime) / 1000;
 			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 			const oscillator = audioCtx.createOscillator();
 			const gainNode = audioCtx.createGain();
@@ -30,7 +35,7 @@
 			rock.style.left = e.clientX + 'px';
 			rock.style.top = e.clientY + 'px';
 			rock.style.pointerEvents = 'none';
-			rock.style.fontSize = '30px';
+			rock.style.fontSize = `${30 + (15 * duration)}px`;
 
 			document.body.appendChild(rock);
 			const frequency = (e.clientX / window.innerWidth) * 1000 + 200;
@@ -46,6 +51,8 @@
 
 			setTimeout(() => document.body.removeChild(rock), 1000);
 		});
+
+
 	</script>
 </body>
 </html>
