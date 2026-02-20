@@ -23,27 +23,29 @@
 	<h2>Ryes Above's Baubles</h2>
 	<script>
 		let startTime = 0;
+		let x = 0;
+		let y = 0;
 
 		function startTimer(e) {
-			if("button" in e) {
+			if(e.type === 'mousedown') {
 				if(e.button != 0) {
 					return;
 				}
+				x = e.clientX;
+				y = e.clientY;
+			}
+			if(e.type === 'touchstart') {
+				x = e.touches[0].clientX;
+				y = e.touches[0].clientY;
 			}
 			startTime = +(new Date());
 		}
 
 		function placeRock(e) {
-			if("button" in e) {
+			if(e.type === 'mousedown') {
 				if(e.button != 0) {
 					return;
 				}
-			}
-			let x = e.clientX;
-			let y = e.clientY;
-			if("touches" in e) {
-				x = e.touches[0].clientX;
-				y = e.touches[0].clientY;
 			}
 			let duration = (+(new Date()) - startTime) / 1000;
 			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -59,7 +61,7 @@
 			rock.style.fontSize = `${30 + (15 * duration)}px`;
 
 			document.body.appendChild(rock);
-			const frequency = (e.x / window.innerWidth) * 1000 + 200;
+			const frequency = (x / window.innerWidth) * 1000 + 200;
 			oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
 
 			gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
