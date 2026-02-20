@@ -11,6 +11,11 @@
             color: #ffffff;
             margin: 20px;
             height: 100vh;
+
+			-webkit-touch-callout: none; 
+    		-webkit-user-select: none;   
+    		user-select: none;
+    		touch-action: none;         
         }
     </style>
 </head>
@@ -19,11 +24,23 @@
 	<script>
 		let startTime = 0;
 
-		document.addEventListener('mousedown', (e) => {
+		function startTimer(e) {
+			if("button" in e) {
+				if(e.button != 0) {
+					return;
+				}
+			}
+			e.preventDefault();
 			startTime = +(new Date());
-		})
+		}
 
-		document.addEventListener('mouseup', (e) => {
+		function placeRock(e) {
+			if("button" in e) {
+				if(e.button != 0) {
+					return;
+				}
+			}
+			e.preventDefault();
 			let duration = (+(new Date()) - startTime) / 1000;
 			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 			const oscillator = audioCtx.createOscillator();
@@ -50,7 +67,15 @@
 			oscillator.stop(audioCtx.currentTime + 0.5);
 
 			setTimeout(() => document.body.removeChild(rock), 1000);
-		});
+
+		}
+
+		document.addEventListener('mousedown', startTimer);
+		document.addEventListener('touchstart', startTimer);
+
+		document.addEventListener('mouseup', placeRock);
+		document.addEventListener('touchend', placeRock);
+	
 
 
 	</script>
