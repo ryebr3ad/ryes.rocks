@@ -30,7 +30,6 @@
 					return;
 				}
 			}
-			e.preventDefault();
 			startTime = +(new Date());
 		}
 
@@ -40,7 +39,6 @@
 					return;
 				}
 			}
-			e.preventDefault();
 			let duration = (+(new Date()) - startTime) / 1000;
 			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 			const oscillator = audioCtx.createOscillator();
