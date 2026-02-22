@@ -1,0 +1,24 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    margin: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-touch-callout: none;
+    touch-action: none;
+}
+
+div#header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+div#header button {
+    margin: 20px;
+}
+
+a {
+    color: lightblue;
+}

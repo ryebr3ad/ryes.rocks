@@ -1,89 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ryes Above's Baubles</title>
-	<link rel="icon" href="/img/ryes.png">
-	<style>
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            margin: 20px;
-            height: 100vh;
-
-			-webkit-touch-callout: none; 
-    		-webkit-user-select: none;   
-    		user-select: none;
-    		touch-action: none;         
-        }
-    </style>
+	<link rel="icon" href="img/ryes.png">
+	<link rel="stylesheet" href="src/ryes.css">
+	<script src="src/ryes.js"></script>
 </head>
+
 <body>
-	<h2>Ryes Above's Baubles</h2>
-	<script>
-		let startTime = 0;
-		let x = 0;
-		let y = 0;
+	<div id="header">
+		<h1>Ryes Above's Baubles</h1>
+		<button id="rockButton">Enable Rocks</button>
+	</div>
+	<a target="_blank" href="https://www.tcgplayer.com/search/all/product?seller=aedae180&view=grid">TCGPlayer</a>
 
-		function startTimer(e) {
-			if(e.type === 'mousedown') {
-				if(e.button != 0) {
-					return;
-				}
-				x = e.clientX;
-				y = e.clientY;
-			}
-			if(e.type === 'touchstart') {
-				x = e.touches[0].clientX;
-				y = e.touches[0].clientY;
-			}
-			startTime = +(new Date());
-		}
-
-		function placeRock(e) {
-			if(e.type === 'mousedown') {
-				if(e.button != 0) {
-					return;
-				}
-			}
-			let duration = (+(new Date()) - startTime) / 1000;
-			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-			const oscillator = audioCtx.createOscillator();
-			const gainNode = audioCtx.createGain();
-
-			const rock = document.createElement('div');
-			rock.innerText = '🪨';
-			rock.style.position = 'absolute';
-			rock.style.left = x + 'px';
-			rock.style.top = y + 'px';
-			rock.style.pointerEvents = 'none';
-			rock.style.fontSize = `${30 + (15 * duration)}px`;
-
-			document.body.appendChild(rock);
-			const frequency = (x / window.innerWidth) * 1000 + 200;
-			oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-
-			gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
-
-			oscillator.connect(gainNode);
-			gainNode.connect(audioCtx.destination);
-
-			oscillator.start();
-			oscillator.stop(audioCtx.currentTime + 0.5);
-
-			setTimeout(() => document.body.removeChild(rock), 1000);
-
-		}
-
-		document.addEventListener('mousedown', startTimer);
-		document.addEventListener('touchstart', startTimer);
-
-		document.addEventListener('mouseup', placeRock);
-		document.addEventListener('touchend', placeRock);
-	
-
-
-	</script>
+	<script src="src/events.js"></script>
 </body>
+
 </html>
