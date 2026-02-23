@@ -5,3 +5,4 @@ document.addEventListener('mouseup', placeRock);
 document.addEventListener('touchend', placeRock);
 
 document.getElementById('rockButton').addEventListener('click', triggerRocks)
+document.getElementById('status').addEventListener('click', getStatus)

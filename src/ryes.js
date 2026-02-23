@@ -69,3 +69,13 @@ function triggerRocks(e) {
 		document.getElementById('rockButton').textContent = 'Enable Rocks'
 	}
 }
+
+async function getStatus() {
+	try {
+		let res = await fetch('https://ryes.rocks/api/status', { method: 'GET' });
+		let status = await res.json();
+		console.log(status.message);
+	} catch (error) {
+		console.error(error.message);
+	}
+}
