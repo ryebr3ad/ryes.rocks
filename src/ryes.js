@@ -74,8 +74,24 @@ async function getStatus() {
 	try {
 		let res = await fetch('https://ryes.rocks/api/status', { method: 'GET' });
 		let status = await res.json();
-		console.log(status.message);
+		showToast(status.message);
 	} catch (error) {
 		console.error(error.message);
 	}
+}
+
+function showToast(message) {
+	const container = document.getElementById('toast-container');
+	const toast = document.createElement('div');
+
+	toast.className = 'toast';
+	toast.innerText = message;
+
+	container.appendChild(toast);
+	toast.classList.add('show');
+
+	setTimeout(() => {
+		toast.classList.remove('show');
+		setTimeout(() => toast.remove(), 300)
+	}, 1000);
 }
