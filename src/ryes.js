@@ -56,7 +56,11 @@ async function placeRock(e) {
 	oscillator.start();
 	oscillator.stop(audioCtx.currentTime + 0.5);
 
-	const res = await fetch('https://ryes.rocks/api/add-rock', { method: 'POST' });
+	const res = await fetch('https://ryes.rocks/api/add-rock', {
+		method: 'POST', headers: {
+			'x-api-key': '^gzJcKaMN%UiXguhbk9EcT4J!rt$A()oPb^vexS4'
+		}
+	});
 	const json = await res.json();
 	console.log(json);
 
@@ -76,7 +80,11 @@ function triggerRocks(e) {
 
 async function getStatus() {
 	try {
-		let res = await fetch('https://ryes.rocks/api/status', { method: 'GET' });
+		let res = await fetch('https://ryes.rocks/api/status', {
+			method: 'GET', headers: {
+				'x-api-key': '^gzJcKaMN%UiXguhbk9EcT4J!rt$A()oPb^vexS4'
+			}
+		});
 		let status = await res.json();
 		showToast(status.message);
 	} catch (error) {
