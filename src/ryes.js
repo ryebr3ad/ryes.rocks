@@ -22,7 +22,7 @@ function startTimer(e) {
 	startTime = +(new Date());
 }
 
-function placeRock(e) {
+async function placeRock(e) {
 	if (!enabled) {
 		return;
 	}
@@ -55,6 +55,10 @@ function placeRock(e) {
 
 	oscillator.start();
 	oscillator.stop(audioCtx.currentTime + 0.5);
+
+	const res = await fetch('https://ryes.rocks/api/add-rock', { method: 'POST' });
+	const json = await res.json();
+	console.log(json);
 
 	setTimeout(() => document.body.removeChild(rock), 1000);
 
