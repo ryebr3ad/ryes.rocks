@@ -5,32 +5,30 @@ let y = 0;
 let enabled = false;
 
 function startTimer(e) {
+	//don't run if not enabled
 	if (!enabled) {
 		return;
 	}
-	if (e.type === 'mousedown') {
-		if (e.button != 0) {
-			return;
-		}
-		x = e.clientX;
-		y = e.clientY;
+	//don't run if correct mouse button wasn't clicked.  I think a touch equals a left click?
+	if (e.button != 0) {
+		return
 	}
-	if (e.type === 'touchstart') {
-		x = e.touches[0].clientX;
-		y = e.touches[0].clientY;
-	}
+	x = e.clientX;
+	y = e.clientY;
 	startTime = +(new Date());
 }
 
+
 async function placeRock(e) {
+	//don't run if not enabled
 	if (!enabled) {
 		return;
 	}
-	if (e.type === 'mousedown') {
-		if (e.button != 0) {
-			return;
-		}
+	//don't run if correct mouse button wasn't clicked.  I think a touch equals a left click?
+	if (e.button != 0) {
+		return
 	}
+
 	let duration = (+(new Date()) - startTime) / 1000;
 	const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	const oscillator = audioCtx.createOscillator();
