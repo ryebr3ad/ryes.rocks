@@ -3,6 +3,7 @@ let x = 0;
 let y = 0;
 
 let enabled = false;
+let clicked = false;
 
 function startTimer(e) {
 	//don't run if not enabled
@@ -13,15 +14,32 @@ function startTimer(e) {
 	if (e.button != 0) {
 		return
 	}
+	console.log(e);
 	x = e.clientX;
 	y = e.clientY;
+	clicked = true;
 	startTime = +(new Date());
+}
+
+function moveRock(e) {
+	//don't run if not enabled
+	if (!enabled) {
+		return;
+	}
+	if (!clicked) {
+		return;
+	}
+	x = e.clientX;
+	y = e.clientY;
 }
 
 
 async function placeRock(e) {
 	//don't run if not enabled
 	if (!enabled) {
+		return;
+	}
+	if (!clicked) {
 		return;
 	}
 	//don't run if correct mouse button wasn't clicked.  I think a touch equals a left click?
@@ -61,7 +79,7 @@ async function placeRock(e) {
 	});
 	const json = await res.json();
 	console.log(json);
-
+	clicked = false;
 	setTimeout(() => document.body.removeChild(rock), 1000);
 
 }
