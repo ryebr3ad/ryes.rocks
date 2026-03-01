@@ -9,7 +9,7 @@ const socket = io("https://ryes.rocks", {
 	path: "/api/socket.io"
 });
 
-socket.on('new-rock', (rock) => {
+socket.on('new-rock-server', (rock) => {
 	console.log(rock);
 })
 
@@ -93,7 +93,7 @@ async function placeRock(e) {
 		}
 	});
 	const json = await res.json();
-	socket.emit('new-rock', { x, y });
+	socket.emit('new-rock-client', { x, y });
 	clicked = false;
 	setTimeout(() => document.body.removeChild(rock), 1000);
 
