@@ -24,7 +24,6 @@ function startTimer(e) {
 	if (e.button != 0) {
 		return
 	}
-	console.log(e);
 	x = e.clientX;
 	y = e.clientY;
 	clicked = true;
