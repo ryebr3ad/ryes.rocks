@@ -93,7 +93,7 @@ async function placeRock(e) {
 		}
 	});
 	const json = await res.json();
-	console.log(json);
+	socket.emit('new-rock', { x, y });
 	clicked = false;
 	setTimeout(() => document.body.removeChild(rock), 1000);
 
