@@ -9,8 +9,8 @@ const socket = io("https://ryes.rocks", {
 	path: "/api/socket.io"
 });
 
-socket.on('rock made', (msg) => {
-	console.log(msg);
+socket.on('new-rock', (rock) => {
+	console.log(rock);
 })
 
 function startTimer(e) {
@@ -81,13 +81,13 @@ async function placeRock(e) {
 	oscillator.stop(audioCtx.currentTime + 0.5);
 
 	const res = await fetch('https://ryes.rocks/api/add-rock', {
-	    method: 'POST',
-	    headers: {
-		"Content-Type": "application/json"
-	    },
-	    body: JSON.stringify({
-		x, y
-	    }),
+		method: 'POST',
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			x, y
+		}),
 		headers: {
 			'x-api-key': '^gzJcKaMN%UiXguhbk9EcT4J!rt$A()oPb^vexS4'
 		}
