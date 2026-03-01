@@ -10,7 +10,7 @@ const socket = io("https://ryes.rocks", {
 });
 
 socket.on('new-rock-server', (msg) => {
-	const rock = createRock(msg.x, msg.y, msg.duration);
+	const rock = createRock(msg.xRatio, msg.yRatio, msg.duration);
 	document.body.appendChild(rock);
 	setTimeout(() => document.body.removeChild(rock), 1000);
 })
@@ -61,7 +61,10 @@ async function placeRock(e) {
 	const oscillator = audioCtx.createOscillator();
 	const gainNode = audioCtx.createGain();
 
-	const rock = createRock(x, y, duration);
+	const xRatio = x / window.innerWidth;
+	const yRatio = y / window.innerHeight;
+
+	const rock = createRock(xRatio, yRatio, duration);
 	document.body.appendChild(rock);
 
 	const frequency = (x / window.innerWidth) * 1000 + 200;
@@ -88,13 +91,15 @@ async function placeRock(e) {
 		}
 	});
 	const json = await res.json();
-	socket.emit('new-rock-client', { x, y, duration });
+	socket.emit('new-rock-client', { xRatio, yRatio, duration });
 	clicked = false;
 	setTimeout(() => document.body.removeChild(rock), 1000);
 
 }
 
-function createRock(x, y, duration) {
+function createRock(xRatio, yRatio, duration) {
+	const x = xRatio * window.innerWidth;
+	const y = yRatio * window.innerHeight;
 	const rock = document.createElement('div');
 	rock.innerText = '🪨';
 	rock.style.position = 'absolute';
