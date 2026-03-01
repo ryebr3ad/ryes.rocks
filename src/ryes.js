@@ -9,12 +9,6 @@ const socket = io("https://ryes.rocks", {
 	path: "/api/socket.io"
 });
 
-socket.on('new-rock-server', (msg) => {
-	const rock = createRock(msg.xRatio, msg.yRatio, msg.duration);
-	document.body.appendChild(rock);
-	setTimeout(() => document.body.removeChild(rock), 1000);
-})
-
 function startTimer(e) {
 	//don't run if not enabled
 	if (!enabled) {
@@ -118,12 +112,14 @@ function createRock(xRatio, yRatio, duration) {
 
 function triggerRocks(e) {
 	enabled = !enabled;
-	if (enabled) {
-		document.getElementById('rockButton').textContent = 'Disable Rocks'
-	}
-	else {
-		document.getElementById('rockButton').textContent = 'Enable Rocks'
-	}
+	document.getElementById('rockButton').textContent = `${enabled ? 'Disable' : 'Enable'} Rocks`;
+	socket[enabled ? 'on' : 'off']('new-rock-server', newRockListener);
+}
+
+function newRockListener(msg) {
+	const rock = createRock(msg.xRatio, msg.yRatio, msg.duration);
+	document.body.appendChild(rock);
+	setTimeout(() => document.body.removeChild(rock), 1000);
 }
 
 async function getStatus() {
