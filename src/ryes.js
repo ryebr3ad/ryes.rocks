@@ -81,7 +81,10 @@ async function placeRock(e) {
 	oscillator.stop(audioCtx.currentTime + 0.5);
 
 	const res = await fetch('https://ryes.rocks/api/add-rock', {
-		method: 'POST', headers: {
+		method: 'POST', body: {
+			x, y
+		},
+		headers: {
 			'x-api-key': '^gzJcKaMN%UiXguhbk9EcT4J!rt$A()oPb^vexS4'
 		}
 	});
