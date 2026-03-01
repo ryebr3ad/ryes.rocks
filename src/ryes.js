@@ -10,6 +10,7 @@ const socket = io("https://ryes.rocks", {
 });
 
 socket.on('new-rock-server', (msg) => {
+	console.log('received message');
 	const rock = createRock(msg.xRatio, msg.yRatio, msg.duration);
 	document.body.appendChild(rock);
 	setTimeout(() => document.body.removeChild(rock), 1000);
