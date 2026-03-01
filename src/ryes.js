@@ -24,6 +24,9 @@ function startTimer(e) {
 	if (e.button != 0) {
 		return
 	}
+	if (e.target.nodeName.toLowerCase() !== 'body') {
+		return;
+	}
 	x = e.clientX;
 	y = e.clientY;
 	clicked = true;
@@ -54,6 +57,9 @@ async function placeRock(e) {
 	//don't run if correct mouse button wasn't clicked.  I think a touch equals a left click?
 	if (e.button != 0) {
 		return
+	}
+	if (e.target.nodeName.toLowerCase() !== 'body') {
+		return;
 	}
 
 	let duration = (+(new Date()) - startTime) / 1000;
