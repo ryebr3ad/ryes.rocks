@@ -5,9 +5,7 @@ let y = 0;
 let enabled = false;
 let clicked = false;
 
-const socket = io('https://ryes.rocks', {
-	path: '/api/socket.io'
-});
+const socket = io('/api');
 
 socket.on('rock made', (msg) => {
 	console.log(msg);
