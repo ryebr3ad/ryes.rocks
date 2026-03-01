@@ -9,8 +9,8 @@ const socket = io("https://ryes.rocks", {
 	path: "/api/socket.io"
 });
 
-socket.on('new-rock-server', (rock) => {
-	const rock = createRock(rock.x, rock.y, rock.duration);
+socket.on('new-rock-server', (msg) => {
+	const rock = createRock(msg.x, msg.y, msg.duration);
 	document.body.appendChild(rock);
 	setTimeout(() => document.body.removeChild(rock), 1000);
 })
