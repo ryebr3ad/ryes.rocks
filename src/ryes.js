@@ -103,6 +103,7 @@ function createRock(x, y, duration) {
 	rock.style.top = y + 'px';
 	rock.style.pointerEvents = 'none';
 	rock.style.fontSize = `${30 + (15 * duration)}px`;
+	return rock;
 }
 
 function triggerRocks(e) {
