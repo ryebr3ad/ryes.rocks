@@ -10,7 +10,9 @@ const socket = io("https://ryes.rocks", {
 });
 
 socket.on('new-rock-server', (rock) => {
-	console.log(rock);
+	const rock = createRock(rock.x, rock.y, rock.duration);
+	document.body.appendChild(rock);
+	setTimeout(() => document.body.removeChild(rock), 1000);
 })
 
 function startTimer(e) {
@@ -60,15 +62,9 @@ async function placeRock(e) {
 	const oscillator = audioCtx.createOscillator();
 	const gainNode = audioCtx.createGain();
 
-	const rock = document.createElement('div');
-	rock.innerText = '🪨';
-	rock.style.position = 'absolute';
-	rock.style.left = x + 'px';
-	rock.style.top = y + 'px';
-	rock.style.pointerEvents = 'none';
-	rock.style.fontSize = `${30 + (15 * duration)}px`;
-
+	const rock = createRock(x, y, duration);
 	document.body.appendChild(rock);
+
 	const frequency = (x / window.innerWidth) * 1000 + 200;
 	oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
 
@@ -93,10 +89,20 @@ async function placeRock(e) {
 		}
 	});
 	const json = await res.json();
-	socket.emit('new-rock-client', { x, y });
+	socket.emit('new-rock-client', { x, y, duration });
 	clicked = false;
 	setTimeout(() => document.body.removeChild(rock), 1000);
 
+}
+
+function createRock(x, y, duration) {
+	const rock = document.createElement('div');
+	rock.innerText = '🪨';
+	rock.style.position = 'absolute';
+	rock.style.left = x + 'px';
+	rock.style.top = y + 'px';
+	rock.style.pointerEvents = 'none';
+	rock.style.fontSize = `${30 + (15 * duration)}px`;
 }
 
 function triggerRocks(e) {
