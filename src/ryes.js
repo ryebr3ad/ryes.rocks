@@ -5,6 +5,12 @@ let y = 0;
 let enabled = false;
 let clicked = false;
 
+const socket = io('https://ryes.rocks/api');
+
+socket.on('rock made', (msg) => {
+	console.log(msg);
+})
+
 function startTimer(e) {
 	//don't run if not enabled
 	if (!enabled) {
