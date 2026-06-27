@@ -1,0 +1,25 @@
+div {
+  width: fit-content;
+}
+
+div#header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+div#header button {
+  margin: 20px;
+}
+
+div#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+a {
+  color: lightblue;
+  width: fit-content;
+}
