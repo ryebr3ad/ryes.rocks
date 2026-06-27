@@ -44,8 +44,7 @@
               "sourceMap": {
                 "scripts": true,
                 "styles": true,
-                "vendor": false,
-                "hidden": true
+                "vendor": false
               },
               "budgets": [
                 {
