@@ -11,6 +11,6 @@ export default `<!doctype html>
 
 <body ngcm="">
   <app-root></app-root>
-<script src="main-F23NMRF7.js" type="module"></script></body>
+<script src="main-RAPVT2Z2.js" type="module"></script></body>
 
 </html>`;

@@ -133,6 +133,7 @@ export class App {
   }
 
   public newRockListener(msg: any): void {
+    console.log(this);
     const rock = this.createRock(msg.xRatio, msg.yRatio, msg.duration);
     document.body.appendChild(rock);
     setTimeout(() => document.body.removeChild(rock), 1000);
