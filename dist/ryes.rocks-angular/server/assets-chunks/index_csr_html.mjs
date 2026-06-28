@@ -11,6 +11,6 @@ export default `<!doctype html>
 
 <body ngcm="">
   <app-root></app-root>
-<script src="main-RAPVT2Z2.js" type="module"></script></body>
+<script src="main-ULHTPSUB.js" type="module"></script></body>
 
 </html>`;

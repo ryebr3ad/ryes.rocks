@@ -129,11 +129,10 @@ export class App {
     this.enabled = !this.enabled;
     document.getElementById('rockButton')!.textContent =
       `${this.enabled ? 'Disable' : 'Enable'} Rocks`;
-    this.socket[this.enabled ? 'on' : 'off']('new-rock-server', this.newRockListener);
+    this.socket[this.enabled ? 'on' : 'off']('new-rock-server', this.newRockListener.bind(this));
   }
 
   public newRockListener(msg: any): void {
-    console.log(this);
     const rock = this.createRock(msg.xRatio, msg.yRatio, msg.duration);
     document.body.appendChild(rock);
     setTimeout(() => document.body.removeChild(rock), 1000);
