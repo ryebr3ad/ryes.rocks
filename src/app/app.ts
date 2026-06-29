@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 
@@ -7,8 +8,8 @@ import { io, Socket } from 'socket.io-client';
   styleUrl: './app.scss',
 })
 export class App {
-  constructor() {
-    this.socket = io('https://ryes.rocks', {
+  constructor(protected http: HttpClient) {
+    this.socket = io({
       path: '/api/socket.io',
     });
   }
@@ -95,7 +96,7 @@ export class App {
     let localX = this.x;
     let localY = this.y;
 
-    const res = await fetch('https://ryes.rocks/api/add-rock', {
+    const res = await fetch('/api/add-rock', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,18 +140,21 @@ export class App {
   }
 
   public async getStatus(e: any) {
-    try {
-      let res = await fetch('https://ryes.rocks/api/status', {
-        method: 'GET',
+    this.http
+      .get('/api/status', {
         headers: {
           'x-api-key': '^gzJcKaMN%UiXguhbk9EcT4J!rt$A()oPb^vexS4',
         },
-      });
-      let status = await res.json();
-      this.showToast(status.message);
-    } catch (error: any) {
-      console.error(error.message);
-    }
+      })
+      .subscribe(
+        (response) => {
+          let status: any = response;
+          this.showToast(status.message);
+        },
+        (error) => {
+          console.error(error.message);
+        },
+      );
   }
 
   public showToast(message: any): void {
