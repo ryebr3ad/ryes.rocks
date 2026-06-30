@@ -1,3 +1,0 @@
-export default `body{background-color:#121212;color:#fff;margin:20px;height:100vh;display:flex;flex-direction:column;-webkit-touch-callout:none;touch-action:none}.toast{background:#bbb;color:#000;padding:12px 20px;border-radius:8px;margin-top:10px;box-shadow:0 4px 12px #0000001a;opacity:0;transform:translateY(20px);transition:all .3s ease}.toast.show{opacity:1;transform:translateY(0)}
-/*# sourceMappingURL=styles-IM4DWE66.css.map */
-`;

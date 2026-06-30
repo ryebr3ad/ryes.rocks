@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/app.scss"],
-  "sourcesContent": ["div {\r\n  width: fit-content;\r\n}\r\n\r\ndiv#header {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\ndiv#header button {\r\n  margin: 20px;\r\n}\r\n\r\ndiv#toast-container {\r\n  position: fixed;\r\n  bottom: 20px;\r\n  right: 20px;\r\n  z-index: 1000;\r\n}\r\n\r\na {\r\n  color: lightblue;\r\n  width: fit-content;\r\n}\r\n"],
-  "mappings": "AAAA,IACE,MAAA,YAGF,GAAA,CAAA,OACE,MAAA,KACA,QAAA,KACA,gBAAA,cAGF,GAAA,CANA,OAMA,OAVA,OAWE,KAGF,GAAA,CAAA,gBACE,SAAA,MACA,OAAA,KACA,MAAA,KACA,QAAA,KAGF,EACE,MAAA,QACA,MAAA",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/styles.scss"],
-  "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\r\nbody {\r\n  background-color: #121212;\r\n  color: #ffffff;\r\n  margin: 20px;\r\n  height: 100vh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  -webkit-touch-callout: none;\r\n  touch-action: none;\r\n}\r\n\r\n.toast {\r\n  background: #bbb;\r\n  color: #000;\r\n  padding: 12px 20px;\r\n  border-radius: 8px;\r\n  margin-top: 10px;\r\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\r\n  opacity: 0;\r\n  transform: translateY(20px);\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.toast.show {\r\n  opacity: 1;\r\n  transform: translateY(0);\r\n}\r\n"],
-  "mappings": "AACA,KACE,iBAAA,QACA,MAAA,KAHF,OAIE,KACA,OAAA,MACA,QAAA,KACA,eAAA,OACA,sBAAA,KACA,aAAA,KAGF,CAAA,MACE,WAAA,KACA,MAAA,KAdF,QAeE,KAAA,KAfF,cAgBE,IACA,WAAA,KACA,WAAA,EAAA,IAAA,KAAA,UACA,QAAA,EACA,UAAA,WAAA,MACA,WAAA,IAAA,IAAA,KAGF,CAZA,KAYA,CAAA,KACE,QAAA,EACA,UAAA,WAAA",
-  "names": []
-}
