@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { io, Socket } from 'socket.io-client';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
